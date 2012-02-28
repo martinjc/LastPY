@@ -1,0 +1,9 @@
+
+
+
+Error Codes:
+
+1, 'Authentication required, but no authentication handler available'
+2, '"user" parameter not supplied and no authentication handler available'
+3, 'Error making API request'
+4, 'Failed to parse JSON payload: %s' % e
