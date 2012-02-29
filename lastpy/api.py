@@ -215,3 +215,20 @@ class API(object):
         method='POST',
         require_auth=True        
     )
+
+    """ Venue Methods """
+
+    venue_getevents = bind_api(
+        endpoint=u'venue.getevents',
+        allowed_params=['venue','festivalsonly']
+    )
+
+    venue_getpastevents = bind_api(
+        endpoint=u'venue.getpastevents',
+        allowed_params=['venue','festivalsonly','page','limit']
+    )
+
+    venue_search = bind_api(
+        endpoint=u'venue.search',
+        allowed_params=['venue','page','limit','country']
+    )

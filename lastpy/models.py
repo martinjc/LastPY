@@ -99,6 +99,7 @@ class Chart( Model ):
         'tag' : 'tags',
         'chart' : 'charts',
         'user' : 'users',
+        'venue' : 'venues',
         'event' : 'events',
         'from' : 'start',
         'to' : 'end'
@@ -284,7 +285,15 @@ class Event( Model ):
     pass
 
 class Venue( Model ):
-    pass
+
+    def events( self, **kargs ):
+        return self._api.venue_getevents( venue=self.id, **kargs )
+
+    def pastevents( self, **kargs ):
+        return self._api.venue_getpastevents( venue=self.id, **kargs )
+
+    def search( self, **kargs ):
+        return self._api.venue_search( **kargs )
 
 class Location( Model ):
     pass
@@ -338,6 +347,7 @@ class ModelFactory( object ):
     albummatches=Chart
     artistmatches=Chart
     trackmatches=Chart
+    venuematches=Chart
     stats=Stats
     similar=Artist
     corrections=Correction
