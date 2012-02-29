@@ -10,25 +10,8 @@ Error Codes:
 
 TODO:
 
-Album
-album.search
-album.share
 Artist
-artist.addTags
-artist.getCorrection
-artist.getEvents
-artist.getImages
-artist.getInfo
-artist.getPastEvents
 artist.getPodcast
-artist.getShouts
-artist.getSimilar
-artist.getTags
-artist.getTopAlbums
-artist.getTopFans
-artist.getTopTags
-artist.getTopTracks
-artist.removeTag
 artist.search
 artist.share
 artist.shout

@@ -56,7 +56,7 @@ class User( Model ):
         'image' : 'images'
     }
 
-    def get_info(self, **kargs):
+    def info(self, **kargs):
         return self._api.user_getinfo( user=self.name, **kargs )
 
     def weeklychartlist( self, **kargs ):
@@ -86,7 +86,8 @@ class User( Model ):
 class Image( Model ):
     
     members = {
-        'text' : 'url'
+        'text' : 'url',
+        'image': 'images'
     }
 
 class Chart( Model ):
@@ -97,6 +98,8 @@ class Chart( Model ):
         'track' : 'tracks',
         'tag' : 'tags',
         'chart' : 'charts',
+        'user' : 'users',
+        'event' : 'events',
         'from' : 'start',
         'to' : 'end'
     }
@@ -119,31 +122,31 @@ class Album( Model ):
         else:
             return self._api.album_addtags( artist=self.artist, album=self.name, **kargs )
 
-    def getbuylinks( self, **kargs ):
+    def buylinks( self, **kargs ):
         if hasattr(self.artist, 'name'):
             return self._api.album_getbuylinks( artist=self.artist.name, album=self.name, **kargs )
         else:
             return self._api.album_getbuylinks( artist=self.artist, album=self.name, **kargs )
 
-    def getinfo( self, **kargs ):
+    def info( self, **kargs ):
         if hasattr(self.artist, 'name'):
             return self._api.album_getinfo( artist=self.artist.name, album=self.name, **kargs )
         else:
             return self._api.album_getinfo( artist=self.artist, album=self.name, **kargs )
 
-    def getshouts( self, **kargs ):
+    def shouts( self, **kargs ):
         if hasattr(self.artist, 'name'):
             return self._api.album_getshouts( artist=self.artist.name, album=self.name, **kargs )
         else:
             return self._api.album_getshouts( artist=self.artist, album=self.name, **kargs )
 
-    def gettags( self, **kargs ):
+    def tags( self, **kargs ):
         if hasattr(self.artist, 'name'):
             return self._api.album_gettags( artist=self.artist.name, album=self.name, **kargs )
         else:
             return self._api.album_gettags( artist=self.artist, album=self.name, **kargs )
 
-    def gettoptags( self, **kargs ):
+    def toptags( self, **kargs ):
         if hasattr(self.artist, 'name'):
             return self._api.album_gettoptags( artist=self.artist.name, album=self.name, **kargs )
         else:
@@ -168,8 +171,63 @@ class Artist( Model ):
     
     members = {
         '#text' : 'name',
-        'image' : 'images'
+        'image' : 'images',
+        'artist' : 'artists'
     }
+
+    def getinfo( self, **kargs ):
+        return self._api.artist_getinfo( artist=self.name, **kargs )
+
+    def addtags( self, **kargs ):
+        return self._api.artist_addtags( artist=self.name, **kargs )
+
+    def tags( self, **kargs ):
+        return self._api.artist_gettags( artist=self.name, **kargs )
+
+    def removetag( self, **kargs ):
+        return self._api.artist_removetag( artist=self.name, **kargs )
+
+    def correction( self, **kargs ):
+        return self._api.artist_getcorrection( **kargs )
+
+    def events( self, **kargs ):
+        return self._api.artist_getevents( artist=self.name, **kargs )
+
+    def images( self, **kargs ):
+        return self._api.artist_getimages( artist=self.name, **kargs )
+
+    def pastevents( self, **kargs ):
+        return self._api.artist_getpastevents( artist=self.name, **kargs )
+
+    def similar( self, **kargs ):
+        return self._api.artist_getsimilar( artist=self.name, **kargs )
+
+    def shouts( self, **kargs ):
+        return self._api.artist_getshouts( artist=self.name, **kargs )
+
+    def topalbums( self, **kargs ):
+        return self._api.artist_gettopalbums( artist=self.name, **kargs)
+
+    def toptags( self, **kargs ):
+        return self._api.artist_gettoptags( artist=self.name, **kargs)
+
+    def toptracks( self, **kargs ):
+        return self._api.artist_gettoptracks( artist=self.name, **kargs)
+
+    def topfans( self, **kargs ):
+        return self._api.artist_gettopfans( artist=self.name, **kargs)
+
+    def share( self, **kargs ):
+        return self._api.artist_share( artist=self.name, **kargs )
+
+    def search( self, **kargs ):
+        return self._api.artist_search( **kargs )
+
+    def shout( self, **kargs ):
+        return self._api.artist_shout( artist=self.name, **kargs )
+
+    def podcast( self, **kargs ):
+        return self._api.artist_getpodcast( artist=self.name, **kargs )
 
 class Track( Model ):
     
@@ -216,6 +274,36 @@ class Search( Model ):
         'opensearch:itemsPerPage' : 'items_per_page',
     }
 
+class Stats( Model ):
+    pass
+
+class Correction( Model ):
+    pass
+
+class Event( Model ):
+    pass
+
+class Venue( Model ):
+    pass
+
+class Location( Model ):
+    pass
+
+class Size( Model ):
+    
+    members = {
+        'size' : 'sizes',
+        'text' : 'url'
+    }
+
+class Votes( Model ):
+    pass
+
+class RSS( Model ):
+    pass
+
+class Channel( Model ):
+    pass
 
 class ModelFactory( object ):
 
@@ -248,3 +336,22 @@ class ModelFactory( object ):
     shouts=Shout
     results=Search
     albummatches=Chart
+    artistmatches=Chart
+    trackmatches=Chart
+    stats=Stats
+    similar=Artist
+    corrections=Correction
+    correction=Correction
+    events=Chart
+    event=Event
+    venue=Venue
+    location=Location
+    images=Image
+    sizes=Size
+    size=Size
+    votes=Votes
+    similarartists=Chart
+    topfans=Chart
+    rss=RSS
+    channel=Channel
+

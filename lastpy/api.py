@@ -118,4 +118,100 @@ class API(object):
         require_auth=True
     )
 
+    """ artist methods """
+    artist_getinfo = bind_api(
+        endpoint = u'artist.getinfo',
+        allowed_params=['artist', 'mbid', 'lang', 'autocorrect', 'username']
+    )
 
+    artist_addtags = bind_api(
+        endpoint = u'artist.addtags',
+        allowed_params=['artist', 'tags'],
+        require_auth=True,
+        method = 'POST'
+    )
+
+    artist_removetag = bind_api(
+        endpoint = u'artist.removetag',
+        allowed_params=['artist','tag'],
+        method='POST',
+        require_auth=True
+    )
+
+    artist_gettags = bind_api(
+        endpoint = u'artist.gettags',
+        allowed_params=['artist', 'mbid', 'user', 'autocorrect']
+    )
+
+    artist_getcorrection = bind_api(
+        endpoint=u'artist.getcorrection',
+        allowed_params=['artist']
+    )
+
+    artist_getevents = bind_api(
+        endpoint=u'artist.getevents',
+        allowed_params=['artist','mbid','autocorrect','limit','page','festivalsonly']
+    )
+
+    artist_getimages = bind_api(
+        endpoint= u'artist.getimages',
+        allowed_params=['artist','mbid','page','limit','autocorrect','order']
+    )
+
+    artist_getpastevents = bind_api(
+        endpoint = u'artist.getpastevents',
+        allowed_params=['artist','mbid','page','autocorrect','limit']
+    )
+
+    artist_getsimilar = bind_api(
+        endpoint=u'artist.getsimilar',
+        allowed_params=['artist','limit','autocorrect','mbid']
+    )
+
+    artist_getshouts = bind_api(
+        endpoint=u'artist.getshouts',
+        allowed_params=['artist', 'mbid', 'limit', 'autocorrect', 'page']
+    )
+
+    artist_gettopalbums = bind_api(
+        endpoint=u'artist.gettopalbums',
+        allowed_params=['artist', 'mbid', 'limit', 'autocorrect', 'page']
+    )
+    artist_gettoptags = bind_api(
+        endpoint=u'artist.gettoptags',
+        allowed_params=['artist', 'mbid', 'autocorrect']
+    )
+
+    artist_gettoptracks = bind_api(
+        endpoint=u'artist.gettoptracks',
+        allowed_params=['artist', 'mbid', 'limit', 'autocorrect', 'page']
+    )
+
+    artist_gettopfans = bind_api(
+        endpoint=u'artist.gettopfans',
+        allowed_params=['artist', 'mbid', 'autocorrect']
+    )
+
+    artist_getpodcast = bind_api(
+        endpoint=u'artist.getpodcast',
+        allowed_params=['artist', 'mbid', 'autocorrect']
+    )
+
+    artist_search = bind_api(
+        endpoint=u'artist.search',
+        allowed_params=['limit','page','artist']
+    )
+
+    artist_share = bind_api(
+        endpoint=u'artist.share',
+        allowed_params=['artist','public','message','recipient'],
+        method='POST',
+        require_auth=True
+    )
+
+    artist_shout = bind_api(
+        endpoint=u'artist.shout',
+        allowed_params=['artist','message'],
+        method='POST',
+        require_auth=True        
+    )
