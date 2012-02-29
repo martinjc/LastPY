@@ -7,7 +7,7 @@ __license__ = 'Apache v2.0'
 
 from lastpy.error import LastpyError
 from lastpy.auth_handler import LastpyAuthHandler
-from lastpy.models import User
+from lastpy.models import User, Album, Artist, Track, Library
 from lastpy.api import API
 
 from tweepy.cache import Cache, MemoryCache, FileCache

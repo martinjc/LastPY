@@ -90,6 +90,17 @@ class Image( Model ):
         'image': 'images'
     }
 
+class Library( Model ):
+
+    def tracks(self, **kargs ):
+        return self._api.library_gettracks( **kargs )
+
+    def artists(self, **kargs ):
+        return self._api.library_getartists( **kargs )
+
+    def albums(self, **kargs ):
+        return self._api.library_getalbums( **kargs )
+
 class Chart( Model ):
 
     members = {
@@ -323,6 +334,9 @@ class ModelFactory( object ):
     album=Album
     artist=Artist
     track=Track
+    albums=Chart
+    tracks=Chart
+    artists=Chart
     tag=Tag
     tags=Tag
     weeklychartlist=Chart

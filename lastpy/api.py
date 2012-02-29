@@ -232,3 +232,19 @@ class API(object):
         endpoint=u'venue.search',
         allowed_params=['venue','page','limit','country']
     )
+
+    """ Library Methods """
+    library_gettracks = bind_api(
+        endpoint=u'library.gettracks',
+        allowed_params=['user','artist','album','page','limit']
+    )
+
+    library_getalbums = bind_api(
+        endpoint=u'library.getalbums',
+        allowed_params=['user','artist','page','limit']
+    )
+
+    library_getartists = bind_api(
+        endpoint=u'library.getartists',
+        allowed_params=['user','page','limit']
+    )
