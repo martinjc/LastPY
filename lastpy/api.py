@@ -33,7 +33,7 @@ class API(object):
 
     user_getweeklyalbumchart = bind_api(
         endpoint = u'user.getweeklyalbumchart',
-        allowed_params = ['user', 'from', 'to']
+        allowed_params = ['user', 'from', 'to'],
     )
 
     user_getweeklytrackchart = bind_api(
@@ -65,3 +65,57 @@ class API(object):
         endpoint = u'user.gettoptags',
         allowed_params = ['user', 'limit']
     )
+
+    """ album methods """
+    album_getinfo = bind_api(
+        endpoint = u'album.getinfo',
+        allowed_params=['album', 'artist', 'mbid', 'lang', 'autocorrect', 'username']
+    )
+
+    album_addtags = bind_api(
+        endpoint = u'album.addtags',
+        allowed_params=['artist', 'album', 'tags'],
+        require_auth=True,
+        method = 'POST'
+    )
+
+    album_gettags = bind_api(
+        endpoint = u'album.gettags',
+        allowed_params=['artist', 'album', 'mbid', 'autocorrect', 'user']
+    )
+
+    album_getbuylinks = bind_api(
+        endpoint = u'album.getbuylinks',
+        allowed_params=['artist','album','mbid','autocorrect','country']
+    )
+
+    album_removetag = bind_api(
+        endpoint = u'album.removetag',
+        allowed_params=['artist', 'album', 'tag'],
+        require_auth=True,
+        method='POST'
+    )
+
+    album_gettoptags = bind_api(
+        endpoint=u'album.gettoptags',
+        allowed_params=['artist','album','mbid','autocorrect']
+    )
+
+    album_getshouts = bind_api(
+        endpoint=u'album.getshouts',
+        allowed_params=['artist','mbid','limit','autocorrect','page']
+    )
+
+    album_search = bind_api(
+        endpoint=u'album.search',
+        allowed_params=['limit','page','album']
+    )
+
+    album_share = bind_api(
+        endpoint=u'album.share',
+        allowed_params=['artist','album','public','message','recipient'],
+        method='POST',
+        require_auth=True
+    )
+
+

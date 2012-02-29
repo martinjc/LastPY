@@ -27,7 +27,7 @@ class JSONParser( Parser ):
 
         error_code = json_data.get( 'error', None )
         if error_code is not None:
-            error_message = json['message']
+            error_message = json_data['message']
             raise LastpyRequestError( error_code, error_message )
 
         return json_data
