@@ -66,6 +66,89 @@ class API(object):
         allowed_params = ['user', 'limit']
     )
 
+    user_getartisttracks = bind_api(
+        endpoint = u'user.getartisttracks',
+        allowed_params=['user', 'artist', 'startTimestamp', 'page', 'endTimestamp']
+    )
+
+    user_getbannedtracks = bind_api(
+        endpoint = u'user.getbannedtracks',
+        allowed_params=['user', 'limit', 'page']
+    )
+
+    user_getevents = bind_api(
+        endpoint = u'user.getevents',
+        allowed_params=['user', 'limit', 'page', 'fetivalsonly']
+    )
+
+    user_getfriends = bind_api(
+        endpoint = u'user.getfriends',
+        allowed_params=['user', 'recenttracks', 'limit', 'page']
+    )
+
+    user_getlovedtracks = bind_api(
+        endpoint = u'user.getlovedtracks',
+        allowed_params=['user', 'limit', 'page']
+    )
+
+    user_getneighbours = bind_api(
+        endpoint = u'user.getneighbours',
+        allowed_params=['user', 'limit']
+    )
+
+    user_getnewreleases = bind_api(
+        endpoint = u'user.getnewreleases',
+        allowed_params=['user', 'userecs']
+    )
+
+    user_getpastevents = bind_api(
+        endpoint = u'user.getpastevents',
+        allowed_params=['user', 'limit', 'page']
+    )
+
+    user_getpersonaltags = bind_api(
+        endpoint = u'user.getpersonaltags',
+        allowed_params=['user', 'tag', 'taggingtype', 'limit', 'page']
+    )
+
+    user_getplaylists = bind_api(
+        endpoint = u'user.getplaylists',
+        allowed_params=['user']
+    )
+
+    user_getrecentstations = bind_api(
+        endpoint = u'user.getrecentstations',
+        allowed_params=['user', 'limit', 'page'],
+        require_auth=True
+    )
+
+    user_getrecenttracks = bind_api(
+        endpoint = u'user.getrecenttracks',
+        allowed_params=['user', 'limit', 'page', 'to', 'from']
+    )
+
+    user_getrecommendedartists = bind_api(
+        endpoint = u'user.getrecommendedartists',
+        allowed_params=['limit', 'page']
+    )
+
+    user_getrecommendedevents = bind_api(
+        endpoint = u'user.getrecommendedevents',
+        allowed_params=['limit', 'page']
+    )
+
+    user_getshouts = bind_api(
+        endpoint = u'user.getshouts',
+        allowed_params=['user', 'limit', 'page']
+    )
+
+    user_shout = bind_api(
+        endpoint = u'user.shout',
+        allowed_params=['user', 'message'],
+        require_auth=True,
+        method='POST'
+    )
+    
     """ album methods """
     album_getinfo = bind_api(
         endpoint = u'album.getinfo',
