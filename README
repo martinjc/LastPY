@@ -8,4 +8,4 @@ auth = lastpy.LastpyAuthHandler(session_key, api_key, api_secret)
 api = lastpy.API(auth)
 user = api.user_getinfo(user='rj')
 
-Many thanks to Joshua Roesslein for his work on Tweepy, which greatly inspired the design of this API wrapper. Uses portions of Tweepy code for caching.
+Many thanks to Joshua Roesslein for his work on Tweepy, which greatly inspired the design of this API wrapper. Uses portions of Tweepy code throughout.

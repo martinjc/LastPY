@@ -27,9 +27,8 @@
 
 
    **************************************************************************
-   Uses a portion of the 'Tweepy' Twitter API module by Joshua Roesslein, 
+   Uses portions of the 'Tweepy' Twitter API module by Joshua Roesslein, 
    available under an MIT Licence from: 
-
 
    https://github.com/tweepy/tweepy
    **************************************************************************
