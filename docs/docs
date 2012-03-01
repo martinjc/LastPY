@@ -90,21 +90,4 @@ track.unban
 track.unlove
 track.updateNowPlaying
 
-User
-user.getArtistTracks
-user.getBannedTracks
-user.getEvents
-user.getFriends
-user.getInfo
-user.getLovedTracks
-user.getNeighbours
-user.getNewReleases
-user.getPastEvents
-user.getPersonalTags
-user.getPlaylists
-user.getRecentStations
-user.getRecentTracks
-user.getRecommendedArtists
-user.getRecommendedEvents
-user.getShouts
-user.shout
+
