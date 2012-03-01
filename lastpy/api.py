@@ -129,7 +129,8 @@ class API(object):
 
     user_getrecommendedartists = bind_api(
         endpoint = u'user.getrecommendedartists',
-        allowed_params=['limit', 'page']
+        allowed_params=['limit', 'page'],
+        require_auth=True
     )
 
     user_getrecommendedevents = bind_api(
@@ -411,3 +412,44 @@ class API(object):
         require_auth=True,
         method='POST'
     )
+
+    """ Track Methods """
+
+track.addTags
+track.addTags
+track.ban
+track.ban
+track.getBuylinks
+track.getBuylinks
+track.getCorrection
+track.getCorrection
+track.getFingerprintMetadata
+track.getFingerprintMetadata
+track.getInfo
+track.getInfo
+track.getShouts
+track.getShouts
+track.getSimilar
+track.getSimilar
+track.getTags
+track.getTags
+track.getTopFans
+track.getTopFans
+track.getTopTags
+track.getTopTags
+track.love
+track.love
+track.removeTag
+track.removeTag
+track.scrobble
+track.scrobble
+track.search
+track.search
+track.share
+track.share
+track.unban
+track.unban
+track.unlove
+track.unlove
+track.updateNowPlaying
+track.updateNowPlaying 

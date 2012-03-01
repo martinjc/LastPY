@@ -15,7 +15,6 @@ auth.getMobileSession
 auth.getSession
 auth.getToken
 
-
 Event
 event.attend
 event.getAttendees
@@ -68,26 +67,5 @@ tag.search
 Tasteometer
 tasteometer.compare
 tasteometer.compareGroup
-
-Track
-track.addTags
-track.ban
-track.getBuylinks
-track.getCorrection
-track.getFingerprintMetadata
-track.getInfo
-track.getShouts
-track.getSimilar
-track.getTags
-track.getTopFans
-track.getTopTags
-track.love
-track.removeTag
-track.scrobble
-track.search
-track.share
-track.unban
-track.unlove
-track.updateNowPlaying
 
 

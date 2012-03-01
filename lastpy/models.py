@@ -44,11 +44,10 @@ class Model( object ):
                         setattr( obj, k, model.parse( api, v ) )
                 except AttributeError:
                     k = cls.members.get(k, k)
-                    setattr( obj, k, v )
+                    setattr( obj, k, Model.parse(api, v) )
         else:
             return json
         return obj  
-
 
 class User( Model ):
 
@@ -110,7 +109,7 @@ class User( Model ):
     def personaltags( self, **kargs ):
         return self._api.user_getpersonaltags( user=self.name, **kargs )
 
-    def playlists( self, **kargs ):
+    def getplaylists( self, **kargs ):
         return self._api.user_getplaylists( user=self.name, **kargs )
 
     def recentstations( self, **kargs ):
@@ -120,7 +119,7 @@ class User( Model ):
         return self._api.user_getrecenttracks( user=self.name, **kargs )
 
     def recommendedartists( self, **kargs ):
-        return self._api.user_getrecommendedartists( user=self.name, **kargs )
+        return self._api.user_getrecommendedartists( **kargs )
 
     def recommendedevents( self, **kargs ):
         return self._api.user_getrecommendedevents( user=self.name, **kargs )
@@ -129,7 +128,7 @@ class User( Model ):
         return self._api.user_getshouts( user=self.name, **kargs )
 
     def shout( self, **kargs ):
-        return self._api.user_shout( user=self.name, **kargs )
+        return self._api.user_shout( **kargs )
 
 class Image( Model ):
     
@@ -174,32 +173,10 @@ class Library( Model ):
     def removescrobble( self, **kargs ):
         return self._api.library_removescrobble( **kargs )        
 
-class List( Model ):
-    
-    members = {
-        'album' : 'albums',
-        'artist' : 'artists',
-        'track' : 'tracks',
-        'tag' : 'tags',
-        'chart' : 'charts',
-        'user' : 'users',
-        'venue' : 'venues',
-        'event' : 'events',
-    }
-    
-
-
 class Chart( Model ):
 
     members = {
-        'album' : 'albums',
-        'artist' : 'artists',
-        'track' : 'tracks',
-        'tag' : 'tags',
         'chart' : 'charts',
-        'user' : 'users',
-        'venue' : 'venues',
-        'event' : 'events',    
         'from' : 'start',
         'to' : 'end'
     }
@@ -221,12 +198,6 @@ class Chart( Model ):
 
     def toptracks( self, **kargs ):
         return self._api.chart_gettoptracks( **kargs )
-
-class Registration( Model ):
-
-    members = {
-        'text' : 'text'
-    }
 
 class Album( Model ):
     
@@ -265,7 +236,7 @@ class Album( Model ):
         else:
             return self._api.album_gettags( artist=self.artist, album=self.name, **kargs )
 
-    def toptags( self, **kargs ):
+    def gettoptags( self, **kargs ):
         if hasattr(self.artist, 'name'):
             return self._api.album_gettoptags( artist=self.artist.name, album=self.name, **kargs )
         else:
@@ -291,7 +262,6 @@ class Artist( Model ):
     members = {
         'text' : 'name',
         'image' : 'images',
-        'artist' : 'artists'
     }
 
     def getinfo( self, **kargs ):
@@ -300,7 +270,7 @@ class Artist( Model ):
     def addtags( self, **kargs ):
         return self._api.artist_addtags( artist=self.name, **kargs )
 
-    def tags( self, **kargs ):
+    def gettags( self, **kargs ):
         return self._api.artist_gettags( artist=self.name, **kargs )
 
     def removetag( self, **kargs ):
@@ -312,13 +282,13 @@ class Artist( Model ):
     def events( self, **kargs ):
         return self._api.artist_getevents( artist=self.name, **kargs )
 
-    def images( self, **kargs ):
+    def getimages( self, **kargs ):
         return self._api.artist_getimages( artist=self.name, **kargs )
 
     def pastevents( self, **kargs ):
         return self._api.artist_getpastevents( artist=self.name, **kargs )
 
-    def similar( self, **kargs ):
+    def getsimilar( self, **kargs ):
         return self._api.artist_getsimilar( artist=self.name, **kargs )
 
     def shouts( self, **kargs ):
@@ -353,36 +323,30 @@ class Track( Model ):
     members = {
         'image' : 'images'
     }
+"""
+track.addTags
+track.ban
+track.getBuylinks
+track.getCorrection
+track.getFingerprintMetadata
+track.getInfo
+track.getShouts
+track.getSimilar
+track.getTags
+track.getTopFans
+track.getTopTags
+track.love
+track.removeTag
+track.scrobble
+track.search
+track.share
+track.unban
+track.unlove
+track.updateNowPlaying
+"""
 
 class Tag( Model ):
-    
-    members = {
-        'tag' : 'tags'
-    }
-
-class Streamable( Model ):
-
-    members = {
-        'text' : 'streamable'
-    }
-
-class Attribute( Model ):
     pass
-
-class Affiliation( Model ):
-
-    members = {
-        'affiliation' : 'affiliations'
-    }
-
-class Price( Model ):
-    pass
-
-class Shout( Model ):
-
-    members = {
-        'shout' : 'shouts'
-    }
 
 class Search( Model ):
 
@@ -392,12 +356,6 @@ class Search( Model ):
         'opensearch:startIndex' : 'start_index',
         'opensearch:itemsPerPage' : 'items_per_page',
     }
-
-class Stats( Model ):
-    pass
-
-class Correction( Model ):
-    pass
 
 class Event( Model ):
     pass
@@ -413,89 +371,45 @@ class Venue( Model ):
     def search( self, **kargs ):
         return self._api.venue_search( **kargs )
 
-class Location( Model ):
-    pass
-
 class Size( Model ):
     
     members = {
-        'size' : 'sizes',
         'text' : 'url'
     }
 
-class Votes( Model ):
+class List( Model, list ):
+    members = {
+        'artist' : 'artists',
+        'album' : 'albums',
+        'track' : 'tracks',
+        'event' : 'events',
+        'venue' : 'venues',
+        'tag' : 'tags',
+        'chart' : 'charts',
+        'user' : 'users',
+    }
+
+class Shout( Model ):
     pass
 
-class RSS( Model ):
-    pass
-
-class Channel( Model ):
-    pass
-
-class Date( Model ):
-    pass
-
-class Taggings( Model ):
+class Station( Model ):
     pass
 
 class ModelFactory( object ):
 
     user=User
     image=Image
-    registered=Registration
     chart=Chart
     album=Album
     artist=Artist
     track=Track
-    albums=List
-    tracks=List
-    artists=List
     tag=Tag
-    tags=List
-    artisttracks=List
-    bannedtracks=List
     weeklychartlist=Chart
-    weeklyalbumchart=List
-    weeklyartistchart=List
-    weeklytrackchart=List
-    topartists=List
-    topalbums=List
-    toptracks=List
-    toptags=List
-    streamable=Streamable
-    attr=Attribute
-    attribute=Attribute
-    affiliations=Affiliation
-    affiliation=Affiliation
-    physicals=Affiliation
-    downloads=Affiliation
-    price=Price
-    shout=Shout
-    shouts=Shout
-    results=Search
-    albummatches=List
-    artistmatches=List
-    trackmatches=List
-    venuematches=List
-    stats=Stats
     similar=Artist
-    corrections=Correction
-    correction=Correction
-    events=List
     event=Event
     venue=Venue
-    location=Location
     images=Image
-    sizes=Size
-    size=Size
-    votes=Votes
-    similarartists=List
-    topfans=List
-    rss=RSS
-    channel=Channel
-    date=Date
-    friends=List
-    lovedtracks=List
-    neighbours=List
-    taggings=Taggings
+    shout=Shout
+    station=Station
+
 

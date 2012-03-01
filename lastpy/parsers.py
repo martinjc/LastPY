@@ -1,6 +1,6 @@
 import json
 
-from lastpy.models import ModelFactory
+from lastpy.models import ModelFactory, Model, List
 from lastpy.error import LastpyError, LastpyRequestError
 
 class Parser( object ):
@@ -46,7 +46,7 @@ class ModelParser( JSONParser ):
                     model = getattr( self.model_factory, json_data.keys()[0] )
                     result = model.parse( method.api, json_data[json_data.keys()[0]] )
                 except AttributeError as e:
-                    return json_data
+                    result = List.parse( method.api, json_data[json_data.keys()[0]] )
                 return result
             else:
                 results = {}
@@ -55,5 +55,5 @@ class ModelParser( JSONParser ):
                         model = getattr( self.model_factory, k )
                         results[k] =  model.parse( method.api, json_data[k] ) 
                     except AttributeError as e:
-                        results[k] = json_data
+                        results[k] = List.parse( method.api, json_data[k] )
                 return results
