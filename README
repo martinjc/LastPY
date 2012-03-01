@@ -1,0 +1,11 @@
+Last.FM API bindings for Python. v0.1
+
+This is very much still a work in progress. There will be bugs, and it's messy, and there's no documentation or comments. Use at your own peril.
+
+Example usage:
+
+auth = lastpy.LastpyAuthHandler(session_key, api_key, api_secret)
+api = lastpy.API(auth)
+user = api.user_getinfo(user='rj')
+
+Many thanks to Joshua Roesslein for his work on Tweepy, which greatly inspired the design of this API wrapper. Uses portions of Tweepy code for caching.
