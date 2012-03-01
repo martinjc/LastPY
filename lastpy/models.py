@@ -174,6 +174,21 @@ class Library( Model ):
     def removescrobble( self, **kargs ):
         return self._api.library_removescrobble( **kargs )        
 
+class List( Model ):
+    
+    members = {
+        'album' : 'albums',
+        'artist' : 'artists',
+        'track' : 'tracks',
+        'tag' : 'tags',
+        'chart' : 'charts',
+        'user' : 'users',
+        'venue' : 'venues',
+        'event' : 'events',
+    }
+    
+
+
 class Chart( Model ):
 
     members = {
@@ -184,7 +199,7 @@ class Chart( Model ):
         'chart' : 'charts',
         'user' : 'users',
         'venue' : 'venues',
-        'event' : 'events',
+        'event' : 'events',    
         'from' : 'start',
         'to' : 'end'
     }
@@ -216,6 +231,7 @@ class Registration( Model ):
 class Album( Model ):
     
     members = {
+        '#text' : 'name',
         'image' : 'images'
     }
 
@@ -273,7 +289,7 @@ class Album( Model ):
 class Artist( Model ):
     
     members = {
-        '#text' : 'name',
+        'text' : 'name',
         'image' : 'images',
         'artist' : 'artists'
     }
@@ -416,6 +432,12 @@ class RSS( Model ):
 class Channel( Model ):
     pass
 
+class Date( Model ):
+    pass
+
+class Taggings( Model ):
+    pass
+
 class ModelFactory( object ):
 
     user=User
@@ -425,19 +447,21 @@ class ModelFactory( object ):
     album=Album
     artist=Artist
     track=Track
-    albums=Chart
-    tracks=Chart
-    artists=Chart
+    albums=List
+    tracks=List
+    artists=List
     tag=Tag
-    tags=Chart
+    tags=List
+    artisttracks=List
+    bannedtracks=List
     weeklychartlist=Chart
-    weeklyalbumchart=Chart
-    weeklyartistchart=Chart
-    weeklytrackchart=Chart
-    topartists=Chart
-    topalbums=Chart
-    toptracks=Chart
-    toptags=Chart
+    weeklyalbumchart=List
+    weeklyartistchart=List
+    weeklytrackchart=List
+    topartists=List
+    topalbums=List
+    toptracks=List
+    toptags=List
     streamable=Streamable
     attr=Attribute
     attribute=Attribute
@@ -449,15 +473,15 @@ class ModelFactory( object ):
     shout=Shout
     shouts=Shout
     results=Search
-    albummatches=Chart
-    artistmatches=Chart
-    trackmatches=Chart
-    venuematches=Chart
+    albummatches=List
+    artistmatches=List
+    trackmatches=List
+    venuematches=List
     stats=Stats
     similar=Artist
     corrections=Correction
     correction=Correction
-    events=Chart
+    events=List
     event=Event
     venue=Venue
     location=Location
@@ -465,8 +489,13 @@ class ModelFactory( object ):
     sizes=Size
     size=Size
     votes=Votes
-    similarartists=Chart
-    topfans=Chart
+    similarartists=List
+    topfans=List
     rss=RSS
     channel=Channel
+    date=Date
+    friends=List
+    lovedtracks=List
+    neighbours=List
+    taggings=Taggings
 
