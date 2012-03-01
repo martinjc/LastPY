@@ -83,6 +83,54 @@ class User( Model ):
     def toptags( self, **kargs ):
         return self._api.user_gettoptags( user=self.name, **kargs )
 
+    def artisttracks( self, **kargs ):
+        return self._api.user_getartisttracks( user=self.name, **kargs )
+
+    def bannedtracks( self, **kargs ):
+        return self._api.user_getbannedtracks( user=self.name, **kargs )
+
+    def events( self, **kargs ):
+        return self._api.user_getevents( user=self.name, **kargs )
+
+    def friends( self, **kargs ):
+        return self._api.user_getfriends( user=self.name, **kargs )
+
+    def lovedtracks( self, **kargs ):
+        return self._api.user_getlovedtracks( user=self.name, **kargs )
+
+    def neighbours( self, **kargs ):
+        return self._api.user_getneighbours( user=self.name, **kargs )
+
+    def newreleases( self, **kargs ):
+        return self._api.user_getnewreleases( user=self.name, **kargs )
+
+    def pastevents( self, **kargs ):
+        return self._api.user_getpastevents( user=self.name, **kargs )
+
+    def personaltags( self, **kargs ):
+        return self._api.user_getpersonaltags( user=self.name, **kargs )
+
+    def playlists( self, **kargs ):
+        return self._api.user_getplaylists( user=self.name, **kargs )
+
+    def recentstations( self, **kargs ):
+        return self._api.user_getrecentstations( user=self.name, **kargs )
+
+    def recenttracks( self, **kargs ):
+        return self._api.user_getrecenttracks( user=self.name, **kargs )
+
+    def recommendedartists( self, **kargs ):
+        return self._api.user_getrecommendedartists( user=self.name, **kargs )
+
+    def recommendedevents( self, **kargs ):
+        return self._api.user_getrecommendedevents( user=self.name, **kargs )
+
+    def shouts( self, **kargs ):
+        return self._api.user_getshouts( user=self.name, **kargs )
+
+    def shout( self, **kargs ):
+        return self._api.user_shout( user=self.name, **kargs )
+
 class Image( Model ):
     
     members = {
