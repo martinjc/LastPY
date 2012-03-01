@@ -16,14 +16,6 @@ auth.getSession
 auth.getToken
 
 
-Chart
-chart.getHypedArtists
-chart.getHypedTracks
-chart.getLovedTracks
-chart.getTopArtists
-chart.getTopTags
-chart.getTopTracks
-
 Event
 event.attend
 event.getAttendees
@@ -52,18 +44,6 @@ group.getWeeklyAlbumChart
 group.getWeeklyArtistChart
 group.getWeeklyChartList
 group.getWeeklyTrackChart
-
-Library
-library.addAlbum
-library.addArtist
-library.addTrack
-library.getAlbums
-library.getArtists
-library.getTracks
-library.removeAlbum
-library.removeArtist
-library.removeScrobble
-library.removeTrack
 
 Playlist
 playlist.addTrack

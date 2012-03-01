@@ -92,14 +92,39 @@ class Image( Model ):
 
 class Library( Model ):
 
-    def tracks(self, **kargs ):
-        return self._api.library_gettracks( **kargs )
+    def __init__(self, user, api=None):
+        self.user = user
+        self._api = api
 
-    def artists(self, **kargs ):
-        return self._api.library_getartists( **kargs )
+    def tracks( self, **kargs ):
+        return self._api.library_gettracks( user=self.user.name, **kargs )
 
-    def albums(self, **kargs ):
-        return self._api.library_getalbums( **kargs )
+    def artists( self, **kargs ):
+        return self._api.library_getartists( user=self.user.name, **kargs )
+
+    def albums( self, **kargs ):
+        return self._api.library_getalbums( user=self.user.name, **kargs )
+
+    def addartist( self, **kargs ):
+        return self._api.library_addartist( **kargs )
+
+    def addtrack( self, **kargs ):
+        return self._api.library_addtrack( **kargs )
+
+    def addalbum( self, **kargs ):
+        return self._api.library_addalbum( **kargs )
+
+    def removeartist( self, **kargs ):
+        return self._api.library_removeartist( **kargs )
+
+    def removetrack( self, **kargs ):
+        return self._api.library_removetrack( **kargs )
+
+    def removealbum(self, **kargs ):
+        return self._api.library_removealbum( **kargs )
+
+    def removescrobble( self, **kargs ):
+        return self._api.library_removescrobble( **kargs )        
 
 class Chart( Model ):
 
@@ -115,7 +140,25 @@ class Chart( Model ):
         'from' : 'start',
         'to' : 'end'
     }
- 
+
+    def hypedartists( self, **kargs ):
+        return self._api.chart_gethypedartists( **kargs )
+
+    def hypedtracks( self, **kargs ):
+        return self._api.chart_gethypedtracks( **kargs )
+
+    def lovedtracks( self, **kargs ):
+        return self._api.chart_getlovedtracks( **kargs )
+
+    def topartists( self, **kargs ):
+        return self._api.chart_gettopartists( **kargs )
+
+    def toptags( self, **kargs ):
+        return self._api.chart_gettoptags( **kargs )
+
+    def toptracks( self, **kargs ):
+        return self._api.chart_gettoptracks( **kargs )
+
 class Registration( Model ):
 
     members = {
@@ -338,7 +381,7 @@ class ModelFactory( object ):
     tracks=Chart
     artists=Chart
     tag=Tag
-    tags=Tag
+    tags=Chart
     weeklychartlist=Chart
     weeklyalbumchart=Chart
     weeklyartistchart=Chart

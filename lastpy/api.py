@@ -233,6 +233,37 @@ class API(object):
         allowed_params=['venue','page','limit','country']
     )
 
+    """ Chart Methods """
+    chart_gethypedartists = bind_api(
+        endpoint=u'chart.gethypedartists',
+        allowed_params=['page', 'limit']
+    )
+
+    chart_gethypedtracks = bind_api(
+        endpoint=u'chart.gethypedtracks',
+        allowed_params=['page', 'limit']
+    )
+
+    chart_getlovedtracks = bind_api(
+        endpoint=u'chart.getlovedtracks',
+        allowed_params=['page', 'limit']
+    )
+
+    chart_gettopartists = bind_api(
+        endpoint=u'chart.gettopartists',
+        allowed_params=['page', 'limit']
+    )
+
+    chart_gettoptags = bind_api(
+        endpoint=u'chart.gettoptags',
+        allowed_params=['page', 'limit']
+    )
+
+    chart_gettoptracks = bind_api(
+        endpoint=u'chart.gettoptracks',
+        allowed_params=['page', 'limit']
+    )
+
     """ Library Methods """
     library_gettracks = bind_api(
         endpoint=u'library.gettracks',
@@ -247,4 +278,53 @@ class API(object):
     library_getartists = bind_api(
         endpoint=u'library.getartists',
         allowed_params=['user','page','limit']
+    )
+
+    library_addtrack = bind_api(
+        endpoint=u'library.addtrack',
+        allowed_params=['artist', 'track'],
+        require_auth=True,
+        method='POST'
+    )
+
+    library_addartist = bind_api(
+        endpoint=u'library.addartist',
+        allowed_params=['artist'],
+        require_auth=True,
+        method='POST'
+    )
+
+    library_addalbum = bind_api(
+        endpoint=u'library.addalbum',
+        allowed_params=['artist', 'album'],
+        require_auth=True,
+        method='POST'
+    )
+
+    library_removetrack = bind_api(
+        endpoint=u'library.removetrack',
+        allowed_params=['artist', 'track'],
+        require_auth=True,
+        method='POST'
+    )
+
+    library_removeartist = bind_api(
+        endpoint=u'library.removeartist',
+        allowed_params=['artist'],
+        require_auth=True,
+        method='POST'
+    )
+
+    library_removealbum = bind_api(
+        endpoint=u'library.removealbum',
+        allowed_params=['artist', 'album'],
+        require_auth=True,
+        method='POST'
+    )
+
+    library_removescrobble = bind_api(
+        endpoint=u'library.removescrobble',
+        allowed_params=['artist', 'album', 'timestamp'],
+        require_auth=True,
+        method='POST'
     )
