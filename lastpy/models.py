@@ -17,7 +17,7 @@ class Model( object ):
         return pickle
 
     def restore_api( self, api ):
-        
+
         self._api = api
 
         members = inspect.getmembers( self, inspect.isclass )
@@ -47,7 +47,7 @@ class Model( object ):
                     setattr( obj, k, Model.parse(api, v) )
         else:
             return json
-        return obj  
+        return obj
 
 class User( Model ):
 
@@ -131,7 +131,7 @@ class User( Model ):
         return self._api.user_shout( **kargs )
 
 class Image( Model ):
-    
+
     members = {
         'text' : 'url',
         'image': 'images'
@@ -171,7 +171,7 @@ class Library( Model ):
         return self._api.library_removealbum( **kargs )
 
     def removescrobble( self, **kargs ):
-        return self._api.library_removescrobble( **kargs )        
+        return self._api.library_removescrobble( **kargs )
 
 class Chart( Model ):
 
@@ -200,7 +200,7 @@ class Chart( Model ):
         return self._api.chart_gettoptracks( **kargs )
 
 class Album( Model ):
-    
+
     members = {
         '#text' : 'name',
         'image' : 'images'
@@ -258,7 +258,7 @@ class Album( Model ):
         return self._api.album_search( **kargs )
 
 class Artist( Model ):
-    
+
     members = {
         'text' : 'name',
         'image' : 'images',
@@ -319,31 +319,119 @@ class Artist( Model ):
         return self._api.artist_getpodcast( artist=self.name, **kargs )
 
 class Track( Model ):
-    
+
     members = {
         'image' : 'images'
     }
-"""
-track.addTags
-track.ban
-track.getBuylinks
-track.getCorrection
-track.getFingerprintMetadata
-track.getInfo
-track.getShouts
-track.getSimilar
-track.getTags
-track.getTopFans
-track.getTopTags
-track.love
-track.removeTag
-track.scrobble
-track.search
-track.share
-track.unban
-track.unlove
-track.updateNowPlaying
-"""
+
+    def addtags( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_addtags( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_addtags( artist=self.artist, track=self.name, **kargs )
+
+    def ban( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_ban( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_ban( artist=self.artist, track=self.name, **kargs )
+
+    def buylinks( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_getbuylinks( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_getbuylinks( artist=self.artist, track=self.name, **kargs )
+
+    def correction( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_getcorrection( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_getcorrection( artist=self.artist, track=self.name, **kargs )
+
+    def fingerprintmetadata( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_getfingerprintmetadata( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_getfingerprintmetadata( artist=self.artist, track=self.name, **kargs )
+
+    def info( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_getinfo( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_getinfo( artist=self.artist, track=self.name, **kargs )
+
+    def shouts( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_getshouts( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_getshouts( artist=self.artist, track=self.name, **kargs )
+
+    def similar( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_getsimilar( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_getsimilar( artist=self.artist, track=self.name, **kargs )
+
+    def tags( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_gettags( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_gettags( artist=self.artist, track=self.name, **kargs )
+
+    def topfans( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_gettopfans( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_gettopfans( artist=self.artist, track=self.name, **kargs )
+
+    def toptags( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_gettoptags( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_gettoptags( artist=self.artist, track=self.name, **kargs )
+
+    def love( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_love( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_love
+    def removetag( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_removetag( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_removetag( artist=self.artist, track=self.name, **kargs )
+
+    def scrobble( self, **kargs ):
+        return self._api.track_scrobble( **kargs )
+    def search( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_search( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_search( artist=self.artist, track=self.name, **kargs )
+
+    def share( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_share( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_share( artist=self.artist, track=self.name, **kargs )
+
+    def unban( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_unban( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_unban( artist=self.artist, track=self.name, **kargs )
+
+    def unlove( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_unlove( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_unlove( artist=self.artist, track=self.name, **kargs )
+
+    def updatenowplaying( self, **kargs ):
+        if hasattr(self.artist, 'name'):
+            return self._api.track_updatenowplaying( artist=self.artist.name, track=self.name, **kargs )
+        else:
+            return self._api.track_updatenowplaying( artist=self.artist, track=self.name, **kargs )
 
 class Tag( Model ):
     pass
@@ -372,7 +460,7 @@ class Venue( Model ):
         return self._api.venue_search( **kargs )
 
 class Size( Model ):
-    
+
     members = {
         'text' : 'url'
     }

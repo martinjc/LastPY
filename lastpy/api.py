@@ -149,7 +149,7 @@ class API(object):
         require_auth=True,
         method='POST'
     )
-    
+
     """ album methods """
     album_getinfo = bind_api(
         endpoint = u'album.getinfo',
@@ -297,7 +297,7 @@ class API(object):
         endpoint=u'artist.shout',
         allowed_params=['artist','message'],
         method='POST',
-        require_auth=True        
+        require_auth=True
     )
 
     """ Venue Methods """
@@ -415,41 +415,97 @@ class API(object):
 
     """ Track Methods """
 
-track.addTags
-track.addTags
-track.ban
-track.ban
-track.getBuylinks
-track.getBuylinks
-track.getCorrection
-track.getCorrection
-track.getFingerprintMetadata
-track.getFingerprintMetadata
-track.getInfo
-track.getInfo
-track.getShouts
-track.getShouts
-track.getSimilar
-track.getSimilar
-track.getTags
-track.getTags
-track.getTopFans
-track.getTopFans
-track.getTopTags
-track.getTopTags
-track.love
-track.love
-track.removeTag
-track.removeTag
-track.scrobble
-track.scrobble
-track.search
-track.search
-track.share
-track.share
-track.unban
-track.unban
-track.unlove
-track.unlove
-track.updateNowPlaying
-track.updateNowPlaying 
+    track_addTags = bind_api(
+        endpoint=u'track.addTags',
+        allowed_params=['artist', 'track', 'tags'],
+        require_auth=True,
+        method='POST'
+    )
+    track_ban = bind_api(
+        endpoint=u'track.ban',
+        allowed_params=['artist', 'track',],
+        require_auth=True,
+        method='POST'
+    )
+    track_getBuylinks = bind_api(
+        endpoint=u'track.getBuylinks',
+        allowed_params=['artist', 'track', 'mbid', 'autocorrect', 'country']
+    )
+    track_getCorrection = bind_api(
+        endpoint=u'track.getCorrection',
+        allowed_params=['artist', 'track',]
+    )
+    track_getFingerprintMetadata = bind_api(
+        endpoint=u'track.getFingerprintMetadata',
+        allowed_params=['fingerprintid']
+    )
+    track_getInfo = bind_api(
+        endpoint=u'track.getInfo',
+        allowed_params=['artist', 'track','mbid', 'autocorrect', 'username']
+    )
+    track_getShouts = bind_api(
+        endpoint=u'track.getShouts',
+        allowed_params=['artist', 'track', 'mbid', 'limit', 'autocorrect', 'page']
+    )
+    track_getSimilar = bind_api(
+        endpoint=u'track.getSimilar',
+        allowed_params=['artist', 'track','autocorrect','limit']
+    )
+    track_getTags = bind_api(
+        endpoint=u'track.getTags',
+        allowed_params=['artist', 'track', 'mbid', 'autocorrect', 'user']
+    )
+    track_getTopFans = bind_api(
+        endpoint=u'track.getTopFans',
+        allowed_params=['artist', 'track', 'mbid', 'autocorrect']
+    )
+    track_getTopTags = bind_api(
+        endpoint=u'track.getTopTags',
+        allowed_params=['artist', 'track', 'mbid', 'autocorrect']
+    )
+    track_love = bind_api(
+        endpoint=u'track.love',
+        allowed_params=['artist', 'track',],
+        require_auth=True,
+        method='POST'
+    )
+    track_removeTag = bind_api(
+        endpoint=u'track.removeTag',
+        allowed_params=['artist', 'track', 'tag']
+        require_auth=True,
+        method='POST'
+    )
+    track_scrobble = bind_api(
+        endpoint=u'track.scrobble',
+        allowed_params=['timestamp', 'album', 'track', 'artist', 'albumArtist', 'duration', 'streamId', 'chosenByUser', 'context', 'trackNumber', 'mbid']
+        require_auth=True,
+        method='POST'
+    )
+    track_search = bind_api(
+        endpoint=u'track.search',
+        allowed_params=['artist', 'track', 'limit', 'page']
+    )
+    track_share = bind_api(
+        endpoint=u'track.share',
+        allowed_params=['artist', 'track', 'public', 'message', 'recipient']
+        require_auth=True,
+        method='POST'
+    )
+    track_unban = bind_api(
+        endpoint=u'track.unban',
+        allowed_params=['artist', 'track',]
+        require_auth=True,
+        method='POST'
+    )
+    track_unlove = bind_api(
+        endpoint=u'track.unlove',
+        allowed_params=['artist', 'track',]
+        require_auth=True,
+        method='POST'
+    )
+    track_updateNowPlaying = bind_api(
+        endpoint=u'track.updateNowPlaying',
+        allowed_params=['artist', 'track', 'album', 'albumArtist', 'trackNumber', 'mbid', 'duration']
+        require_auth=True,
+        method='POST'
+    )
