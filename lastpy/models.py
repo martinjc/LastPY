@@ -403,6 +403,7 @@ class Track( Model ):
 
     def scrobble( self, **kargs ):
         return self._api.track_scrobble( **kargs )
+
     def search( self, **kargs ):
         if hasattr(self.artist, 'name'):
             return self._api.track_search( artist=self.artist.name, track=self.name, **kargs )

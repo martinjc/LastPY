@@ -415,8 +415,8 @@ class API(object):
 
     """ Track Methods """
 
-    track_addTags = bind_api(
-        endpoint=u'track.addTags',
+    track_addtags = bind_api(
+        endpoint=u'track.addtags',
         allowed_params=['artist', 'track', 'tags'],
         require_auth=True,
         method='POST'
@@ -427,40 +427,40 @@ class API(object):
         require_auth=True,
         method='POST'
     )
-    track_getBuylinks = bind_api(
-        endpoint=u'track.getBuylinks',
+    track_getbuylinks = bind_api(
+        endpoint=u'track.getbuylinks',
         allowed_params=['artist', 'track', 'mbid', 'autocorrect', 'country']
     )
-    track_getCorrection = bind_api(
-        endpoint=u'track.getCorrection',
+    track_getcorrection = bind_api(
+        endpoint=u'track.getcorrection',
         allowed_params=['artist', 'track',]
     )
-    track_getFingerprintMetadata = bind_api(
-        endpoint=u'track.getFingerprintMetadata',
+    track_getfingerprintmetadata = bind_api(
+        endpoint=u'track.getfingerprintmetadata',
         allowed_params=['fingerprintid']
     )
-    track_getInfo = bind_api(
-        endpoint=u'track.getInfo',
+    track_getinfo = bind_api(
+        endpoint=u'track.getinfo',
         allowed_params=['artist', 'track','mbid', 'autocorrect', 'username']
     )
-    track_getShouts = bind_api(
-        endpoint=u'track.getShouts',
+    track_getshouts = bind_api(
+        endpoint=u'track.getshouts',
         allowed_params=['artist', 'track', 'mbid', 'limit', 'autocorrect', 'page']
     )
-    track_getSimilar = bind_api(
-        endpoint=u'track.getSimilar',
+    track_getsimilar = bind_api(
+        endpoint=u'track.getsimilar',
         allowed_params=['artist', 'track','autocorrect','limit']
     )
-    track_getTags = bind_api(
-        endpoint=u'track.getTags',
+    track_gettags = bind_api(
+        endpoint=u'track.gettags',
         allowed_params=['artist', 'track', 'mbid', 'autocorrect', 'user']
     )
-    track_getTopFans = bind_api(
-        endpoint=u'track.getTopFans',
+    track_gettopfans = bind_api(
+        endpoint=u'track.gettopfans',
         allowed_params=['artist', 'track', 'mbid', 'autocorrect']
     )
-    track_getTopTags = bind_api(
-        endpoint=u'track.getTopTags',
+    track_gettoptags = bind_api(
+        endpoint=u'track.gettoptags',
         allowed_params=['artist', 'track', 'mbid', 'autocorrect']
     )
     track_love = bind_api(
@@ -469,7 +469,7 @@ class API(object):
         require_auth=True,
         method='POST'
     )
-    track_removeTag = bind_api(
+    track_removetag = bind_api(
         endpoint=u'track.removeTag',
         allowed_params=['artist', 'track', 'tag']
         require_auth=True,
@@ -503,9 +503,175 @@ class API(object):
         require_auth=True,
         method='POST'
     )
-    track_updateNowPlaying = bind_api(
+    track_updatenowplaying = bind_api(
         endpoint=u'track.updateNowPlaying',
         allowed_params=['artist', 'track', 'album', 'albumArtist', 'trackNumber', 'mbid', 'duration']
         require_auth=True,
         method='POST'
+    )
+
+    """ Event Methods """
+    event_attend = bind_api(
+        endpoint=u'event.attend',
+        allowed_params=['event', 'status'],
+        require_auth=True,
+        method='POST'
+    )
+    event_getattendees = bind_api(
+        endpoint=u'event.getattendees',
+        allowed_params=['event', 'page', 'limit']
+    )
+    event_getinfo = bind_api(
+        endpoint=u'event.getinfo',
+        allowed_params=['event']
+    )
+    event_getshouts = bind_api(
+        endpoint=u'event.getshouts',
+        allowed_params=['event', 'page', 'limit']
+    )
+    event_share = bind_api(
+        endpoint=u'event.share',
+        allowed_params=['event', 'public', 'message', 'recipient'],
+        require_auth=True,
+        method='POST'
+    )
+    event_shout = bind_api(
+        endpoint=u'event.shout',
+        allowed_params=['event', 'message'],
+        require_auth=True,
+        method='POST'
+    )
+
+    """ Geo Methods """
+    geo_getevents = bind_api(
+        endpoint=u'geo.getevents',
+        allowed_params=['lat', 'location', 'long', 'distance', 'limit', 'page']
+    )
+    geo_getmetroartistchart = bind_api(
+        endpoint=u'geo.getmetroartistchart',
+        allowed_params=['country', 'metro', 'start', 'end']
+    )
+    geo_getmetrohypeartistchart = bind_api(
+        endpoint=u'geo.getmetrohypeartistchart',
+        allowed_params=['country', 'metro', 'start', 'end']
+    )
+    geo_getmetrohypetrackchart = bind_api(
+        endpoint=u'geo.getmetrohypetrackchart',
+        allowed_params=['country', 'metro', 'start', 'end']
+    )
+    geo_getmetrotrackchart = bind_api(
+        endpoint=u'geo.getmetrotrackchart',
+        allowed_params=['country', 'metro', 'start', 'end']
+    )
+    geo_getmetrouniqueartistchart = bind_api(
+        endpoint=u'geo.getmetrouniqueartistchart',
+        allowed_params=['country', 'metro', 'start', 'end']
+    )
+    geo_getmetrouniquetrackchart = bind_api(
+        endpoint=u'geo.getmetrouniquetrackchart',
+        allowed_params=['country', 'metro', 'start', 'end']
+    )
+    geo_getmetroweeklychartlist = bind_api(
+        endpoint=u'geo.getmetroweeklychartlist',
+        allowed_params=['metro']
+    )
+    geo_getmetros = bind_api(
+        endpoint=u'geo.getmetros',
+        allowed_params=['country']
+    )
+    geo_gettopartists = bind_api(
+        endpoint=u'geo.gettopartists',
+        allowed_params=['country', 'limit', 'page']
+    )
+    geo_gettoptracks = bind_api(
+        endpoint=u'geo.gettoptracks',
+        allowed_params=['country', 'location', 'limit', 'page']
+    )
+
+    """ Group Methods """
+    group_gethype = bind_api(
+        endpoint=u'group.gethype',
+        allowed_params=['group']
+    )
+    group_getmembers = bind_api(
+        endpoint=u'group.getmembers',
+        allowed_params=['group', 'page', 'limit']
+    )
+    group_getweeklyalbumchart = bind_api(
+        endpoint=u'group.getweeklyalbumchart',
+        allowed_params=['group', 'from', 'to']
+    )
+    group_getweeklyartistchart = bind_api(
+        endpoint=u'group.getweeklyartistchart',
+        allowed_params=['group', 'from', 'to']
+    )
+    group_getweeklychartlist = bind_api(
+        endpoint=u'group.getweeklychartlist',
+        allowed_params=['group']
+    )
+    group_getweeklytrackchart = bind_api(
+        endpoint=u'group.getweeklytrackchart',
+        allowed_params=['group', 'from', 'to']
+    )
+
+    """ Playlist Methods """
+    playlist_addtrack = bind_api(
+        endpoint=u'playlist.addtrack',
+        allowed_params=['playlistID', 'track', 'artist'],
+        require_auth=True,
+        method='POST'
+    )
+    playlist_create = bind_api(
+        endpoint=u'playlist.create',
+        allowed_params=['title', 'description'],
+        require_auth=True,
+        method='POST'
+    )
+
+    """ Tag Methods """
+    tag_getinfo = bind_api(
+        endpoint=u'tag.getinfo',
+        allowed_params=['artist', 'lang']
+    )
+    tag_getsimilar = bind_api(
+        endpoint=u'tag.getsimilar',
+        allowed_params=['tag']
+    )
+    tag_gettopalbums = bind_api(
+        endpoint=u'tag.gettopalbums',
+        allowed_params=['tag', 'limit', 'page']
+    )
+    tag_gettopartists = bind_api(
+        endpoint=u'tag.gettopartists',
+        allowed_params=['tag', 'limit', 'page']
+    )
+    tag_gettoptags = bind_api(
+        endpoint=u'tag.gettoptags',
+        allowed_params=[]
+    )
+    tag_gettoptracks = bind_api(
+        endpoint=u'tag.gettoptracks',
+        allowed_params=['tag', 'limit', 'page']
+    )
+    tag_getweeklyartistchart = bind_api(
+        endpoint=u'tag.getweeklyartistchart',
+        allowed_params=['tag', 'from', 'to', 'limit']
+    )
+    tag_getweeklychartlist = bind_api(
+        endpoint=u'tag.getweeklychartlist',
+        allowed_params=['tag']
+    )
+    tag_search = bind_api(
+        endpoint=u'tag.search',
+        allowed_params=['limit', 'page', 'tag']
+    )
+
+    """ Tasteometer Methods """
+    tasteometer_compare = bind_api(
+        endpoint=u'tasteometer.compare',
+        allowed_params=['type', 'value', 'limit']
+    )
+    tasteometer_comparegroup = bind_api(
+        endpoint=u'tasteometer.comparegroup',
+        allowed_params=['source', 'value', 'cutoff', 'connectionLimit']
     )
