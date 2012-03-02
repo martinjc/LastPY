@@ -435,7 +435,34 @@ class Track( Model ):
             return self._api.track_updatenowplaying( artist=self.artist, track=self.name, **kargs )
 
 class Tag( Model ):
-    pass
+
+    def info( self, **kargs ):
+        return self._api.tag_getinfo( tag=self.name, **kargs )
+
+    def similar( self, **kargs ):
+        return self._api.tag_getsimilar( tag=self.name, **kargs )
+
+    def topalbums( self, **kargs ):
+        return self._api.tag_gettopalbums( tag=self.name, **kargs )
+
+    def topartists( self, **kargs ):
+        return self._api.tag_gettopartists( tag=self.name, **kargs )
+
+    def toptags( self, **kargs ):
+        return self._api.tag_gettoptags( **kargs )
+
+    def toptracks( self, **kargs ):
+        return self._api.tag_gettoptracks( tag=self.name, **kargs )
+
+    def weeklyartistchart( self, **kargs ):
+        return self._api.tag_getweeklyartistchart( tag=self.name, **kargs )
+
+    def weeklychartlist( self, **kargs ):
+        return self._api.tag_getweeklychartlist( tag=self.name, **kargs )
+
+    def search( self, **kargs ):
+        return self._api.tag_search( tag=self.name, **kargs )
+
 
 class Search( Model ):
 
@@ -447,7 +474,24 @@ class Search( Model ):
     }
 
 class Event( Model ):
-    pass
+
+    def attend( self, **kargs ):
+        return self._api.event_attend( event=self.id **kargs )
+
+    def attendees( self, **kargs ):
+        return self._api.event_getattendees( event=self.id **kargs )
+
+    def info( self, **kargs ):
+        return self._api.event_getinfo( event=self.id **kargs )
+
+    def shouts( self, **kargs ):
+        return self._api.event_getshouts( event=self.id **kargs )
+
+    def share( self, **kargs ):
+        return self._api.event_share( event=self.id **kargs )
+
+    def shout( self, **kargs ):
+        return self._api.event_shout( event=self.id **kargs )
 
 class Venue( Model ):
 
@@ -483,6 +527,81 @@ class Shout( Model ):
 
 class Station( Model ):
     pass
+
+class Geo( Model ):
+
+    def events( self, **kargs ):
+        return self._api.geo_getevents( **kargs )
+
+    def metroartistchart( self, **kargs ):
+        return self._api.geo_getmetroartistchart( **kargs )
+
+    def metrohypeartistchart( self, **kargs ):
+        return self._api.geo_getmetrohypeartistchart( **kargs )
+
+    def metrohypetrackchart( self, **kargs ):
+        return self._api.geo_getmetrohypetrackchart( **kargs )
+
+    def metrotrackchart( self, **kargs ):
+        return self._api.geo_getmetrotrackchart( **kargs )
+
+    def metrouniqueartistchart( self, **kargs ):
+        return self._api.geo_getmetrouniqueartistchart( **kargs )
+
+    def metrouniquetrackchart( self, **kargs ):
+        return self._api.geo_getmetrouniquetrackchart( **kargs )
+
+    def metroweeklychartlist( self, **kargs ):
+        return self._api.geo_getmetroweeklychartlist( **kargs )
+
+    def metros( self, **kargs ):
+        return self._api.geo_getmetros( **kargs )
+
+    def topartists( self, **kargs ):
+        return self._api.geo_gettopartists( **kargs )
+
+    def toptracks( self, **kargs ):
+        return self._api.geo_gettoptracks( **kargs )
+
+class Group( Model ):
+
+    def __init__(self, group, api=None):
+        self.group=group
+        self._api=api
+
+    def hype( self, **kargs ):
+        return self._api.group_gethype( group=self.group, **kargs )
+
+    def members( self, **kargs ):
+        return self._api.group_getmembers( group=self.group, **kargs )
+
+    def weeklyalbumchart( self, **kargs ):
+        return self._api.group_getweeklyalbumchart( group=self.group, **kargs )
+
+    def weeklyartistchart( self, **kargs ):
+        return self._api.group_getweeklyartistchart( group=self.group, **kargs )
+
+    def weeklychartlist( self, **kargs ):
+        return self._api.group_getweeklychartlist( group=self.group, **kargs )
+
+    def weeklytrackchart( self, **kargs ):
+        return self._api.group_getweeklytrackchart( group=self.group, **kargs )
+
+class PlayList( Model ):
+
+    def addtrack( self, **kargs ):
+        return self._api.playlist_addtrack( **kargs )
+
+    def create( self, **kargs ):
+        return self._api.playlist_create( **kargs )
+
+class Tasteometer( Model ):
+
+    def compare( self, **kargs ):
+        return self._api.tasteometer_compare( **kargs )
+
+    def comparegroup( self, **kargs ):
+        return self._api.tasteometer_comparegroup( **kargs )
 
 class ModelFactory( object ):
 
